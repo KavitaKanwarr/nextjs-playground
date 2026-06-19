@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "./Header";
+import Footer from "./Footer";
 
 // Avail the fonts to use within app, not applied in here but in global css. It can also be directly aplied by removing variable from here and use geistSans.className in html > className
 const geistSans = Geist({
@@ -32,9 +34,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {/* <Header /> */}
-          {children}
-        {/* <Footer /> */}
+        {/* Layout preserves state and persists Header and Footer so that they don't re-render when switching pages  */}
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
